@@ -1,3 +1,9 @@
+/******************************************/
+/* Constantin Coșoiu - Bucharest, Romania */
+/******************************************/
+/* 2023-12-30 * ver. 1.1 * CC 0 Universal */
+/******************************************/
+
 var stylesToShow = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'A'];
 var columnsForStylesToShow = 2;
 
