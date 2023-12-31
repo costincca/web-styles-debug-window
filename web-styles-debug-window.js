@@ -149,21 +149,21 @@ function dragElement(elmnt) {
 	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 	if (document.getElementById(elmnt.id + "Header")) {
 		// if present, the header is where you move the DIV from:
-		document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
+		document.getElementById(elmnt.id + "Header").onpointerdown = dragPointerDown;
 	} else {
 		// otherwise, move the DIV from anywhere inside the DIV:
-		elmnt.onmousedown = dragMouseDown;
+		elmnt.onpointerdown = dragPointerDown;
 	}
 
-	function dragMouseDown(e) {
+	function dragPointerDown(e) {
 		e = e || window.event;
 		e.preventDefault();
 		// get the mouse cursor position at startup:
 		pos3 = e.clientX;
 		pos4 = e.clientY;
-		document.onmouseup = closeDragElement;
+		document.onpointerup = closeDragElement;
 		// call a function whenever the cursor moves:
-		document.onmousemove = elementDrag;
+		document.onpointermove = elementDrag;
 	}
 
 	function elementDrag(e) {
@@ -181,7 +181,7 @@ function dragElement(elmnt) {
 
 	function closeDragElement() {
 		// stop moving when mouse button is released:
-		document.onmouseup = null;
-		document.onmousemove = null;
+		document.onpointerup = null;
+		document.onpointermove = null;
 	}
 }
