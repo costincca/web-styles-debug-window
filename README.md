@@ -17,7 +17,14 @@ If hashed version changes, the new version should be replaced in the URL:
 
 By default, even if it is installed in page, the script does not show anything.
 To bring up the debug pane, URL parameters need to be specified:
-    1) **dbg=1** - brings up the debugging pane;
+> **dbg**
+
+> Values:
+> 1 - brings up the full draggable debugging pane
+> 2 - brings up the simple semitransparent non-draggable debug panel on top
+> 3 - brings up the simple scrolling debug panel on top of the page, which remains fixed, sticky
+> 4 - only shows inline styles
+
     2) **dbgcol=4** - shows the information on the specified number of columns (default: **2**).
 
 Example: 
