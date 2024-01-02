@@ -16,18 +16,20 @@ If hashed version changes, the new version should be replaced in the URL:
 # Configuration
 
 By default, even if it is installed in page, the script does not show anything.
-To bring up the debug pane, URL parameters need to be specified:
-> **dbg**
+To bring up the debug pane, URL parameters need to be specified:  
+**dbg**  
+  
+> Values:  
+> **1** - brings up the full draggable debugging pane  
+> **2** - brings up the fixed semitransparent non-draggable debug panel on top of the content    
+> **3** - brings up the sticky opaque debug panel, sticky at the top of the page, on top of the content  
+  
+**dbgcol**
 
-> Values:
-> 1 - brings up the full draggable debugging pane
-> 2 - brings up the simple semitransparent non-draggable debug panel on top
-> 3 - brings up the simple scrolling debug panel on top of the page, which remains fixed, sticky
-> 4 - only shows inline styles
-
-    2) **dbgcol=4** - shows the information on the specified number of columns (default: **2**).
-
-Example: 
+> Values:  
+> **number** - shows the information on the specified number of columns (default: **2**)  
+  
+Example:  
 > ..../index.htm?**dbg=1&dbgcol=4**
 
 Currently, only the following styles are displayed: **'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'A'**.
