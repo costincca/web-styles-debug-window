@@ -21,8 +21,8 @@ To bring up the debug pane, URL parameters need to be specified:
   
 > Values:  
 > **1** - brings up the full draggable debugging pane  
-> **2** - brings up the fixed semitransparent non-draggable debug panel on top of the content    
-> **3** - brings up the sticky opaque debug panel, sticky at the top of the page, on top of the content
+> **2** - brings up the fixed semitransparent non-draggable debug panel on top of the content   
+> **3** - brings up the sticky opaque debug panel, sticky at the top of the page, on top of the content  
 > **4** - brings up the small opaque debug panel, not sticky, on top of the content, which shows only DPR, width and height values  
   
 **dbgcol**
