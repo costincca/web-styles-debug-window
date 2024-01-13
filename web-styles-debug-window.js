@@ -24,6 +24,8 @@ if(debug === "1") { //Full draggable debug panel
 	createFixedDebugPanel();
 } else if(debug === "3") { // Simple scrolling debug panel on top of the page
 	createStickyDebugPanel();
+} else if(debug === "4") { // Simple scrolling debug panel on top of the page
+	createSmallDebugPanel();
 }
 
 function createFullDebugPanel()
@@ -112,12 +114,14 @@ function createFullDebugPanel()
 					}
 				);
 		txt += `
-			</div>
+			</div>`;
+		txt += `
 			<div id="dbgWndFooter">
 				<button class="dbgWndButton dbgWndRecalc" onclick="deactivateUniformStyle();populateFixedDetails();populateVariableDetails();">Recalculate</button>
 				<button class="dbgWndButton dbgWndToggleStyles" onclick="toggleUniformStyle();">Toggle Element Style</button>
 				<button class="dbgWndButton dbgWndAddStyles" onclick="showInlineStyles();disableButton(this);">+ Add Styles to Elements</button>
-			</div>
+			</div>`;
+		txt += `
 		</div>`;
 	document.body.insertAdjacentHTML('afterbegin', txt);
 }
@@ -215,7 +219,7 @@ function createFixedDebugPanel()
 				font-weight: bold;
 			}
 		</style>
-		<!-- Draggable DIV -->
+		<!-- Fixed DIV -->
 		<div id="dbgWnd">
 			<div id="dbgWndFixedDetails">
 				<div>DPR: <span id="dbgWndDetailsDPR">-</span></div>
@@ -229,12 +233,14 @@ function createFixedDebugPanel()
 					}
 				);
 		txt += `
-			</div>
+			</div>`;
+		txt += `
 			<div id="dbgWndFooter">
 				<button class="dbgWndButton dbgWndRecalc" onclick="deactivateUniformStyle();populateFixedDetails();populateVariableDetails();">Recalculate</button>
 				<button class="dbgWndButton dbgWndToggleStyles" onclick="toggleUniformStyle();">Toggle Element Style</button>
 				<button class="dbgWndButton dbgWndAddStyles" onclick="showInlineStyles();disableButton(this);">+ Add Styles to Elements</button>
-			</div>
+			</div>`;
+		txt += `
 		</div>`;
 	document.body.insertAdjacentHTML('afterbegin', txt);
 }
@@ -333,7 +339,7 @@ function createStickyDebugPanel()
 				font-weight: bold;
 			}
 		</style>
-		<!-- Draggable DIV -->
+		<!-- Fixed DIV -->
 		<div id="dbgWnd">
 			<div id="dbgWndFixedDetails">
 				<div>DPR: <span id="dbgWndDetailsDPR">-</span></div>
@@ -347,12 +353,134 @@ function createStickyDebugPanel()
 					}
 				);
 		txt += `
-			</div>
+			</div>`;
+		txt += `
 			<div id="dbgWndFooter">
 				<button class="dbgWndButton dbgWndRecalc" onclick="deactivateUniformStyle();populateFixedDetails();populateVariableDetails();">Recalculate</button>
 				<button class="dbgWndButton dbgWndToggleStyles" onclick="toggleUniformStyle();">Toggle Element Style</button>
 				<button class="dbgWndButton dbgWndAddStyles" onclick="showInlineStyles();disableButton(this);">+ Add Styles to Elements</button>
-			</div>
+			</div>`;
+		txt += `
+		</div>`;
+	document.body.insertAdjacentHTML('afterbegin', txt);
+}
+
+function createSmallDebugPanel()
+{
+	var txt = `
+		<style>
+			#dbgWnd {
+			  x-position: sticky;
+			  top: 0;
+			  left: 0;
+			  width: 100%;
+			  height: auto;
+			  x-z-index: 10000;
+			  background-color: #f1f1f1;
+			  border: 1px solid #333333;
+			  text-align: center;
+			  text-shadow: 1px 1px white, 0px 0px 5px white, 0px 0px 10px white;
+			}
+
+			#dbgWndHeader {
+				cursor: move;
+			}
+
+			#dbgWndHeader, #dbgWndFooter {
+			  padding: 10px;
+			  z-index: 10;
+			  background-color: rgba(128, 128, 128, 0.3);
+			  color: #fff;
+			}
+			
+			#dbgWndFixedDetails {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-gap: 3px;
+				
+				background-color: #dddddd;
+				font-weight: bold;
+			}
+			
+			#dbgWndVariableDetails {
+				display: grid;
+				grid-template-columns: ${templatedColumns};
+				grid-gap: 3px;
+
+				background-color: #dddddd;
+			}
+			
+			.dbgWndVariableDetailsStyle {
+				margin-left: 5px;
+				margin-right: 5px;
+				border: 1px solid grey;
+				align-self: center;
+				background-color: white;
+				border-radius: 3px;
+			}
+			
+			.dbgWndButton {
+				background-color: transparent;
+				color: white;
+				border: 1px solid white;
+				border-radius: 3px;
+				padding: 3px 5px;
+			}
+
+			.dbgWndButton:hover {
+				background-color: white;
+				color: #007bff;
+				border-radius: 3px;
+				cursor: pointer;
+			}
+			
+			.dbgWndRecalc {
+				background-color: green;
+				color: white;
+				font-weight: bold;
+			}
+			
+			.dbgWndToggleStyles {
+				background-color: rgba(0, 0, 255, 0.6);
+				color: white;
+				font-weight: bold;
+			}
+			
+			.dbgWndAddStyles {
+				background-color: purple;
+				color: white;
+				font-weight: bold;
+			}
+			
+			.dbgWndUniformStyle {
+				font-size: 20px;
+				color: black;
+				text-shadow: 1px 1px white;
+				font-weight: bold;
+			}
+		</style>
+		<!-- Fixed DIV -->
+		<div id="dbgWnd">
+			<div id="dbgWndFixedDetails">
+				<div>DPR: <span id="dbgWndDetailsDPR">-</span></div>
+				<div>Width: <span id="dbgWndDetailsInnerWidth">- </span>px</div>
+				<div>Height: <span id="dbgWndDetailsInnerHeight">- </span>px</div>
+			</div>`;
+		txt += `
+			<div id="dbgWndVariableDetails">`;
+				stylesToShow.forEach((elem) => {
+						txt += `<${elem} class="dbgWndVariableDetailsStyle">${elem}: <span id="dbgWndStyle${elem}">-</span></${elem}>`;
+					}
+				);
+		txt += `
+			</div>`;
+		txt += `
+			<div id="dbgWndFooter">
+				<button class="dbgWndButton dbgWndRecalc" onclick="deactivateUniformStyle();populateFixedDetails();populateVariableDetails();">Recalculate</button>
+				<button class="dbgWndButton dbgWndToggleStyles" onclick="toggleUniformStyle();">Toggle Element Style</button>
+				<button class="dbgWndButton dbgWndAddStyles" onclick="showInlineStyles();disableButton(this);">+ Add Styles to Elements</button>
+			</div>`;
+		txt += `
 		</div>`;
 	document.body.insertAdjacentHTML('afterbegin', txt);
 }
@@ -378,16 +506,16 @@ function toggleUniformStyle() {
 }
 
 function populateFixedDetails() {
-	document.getElementById("dbgWndDetailsDPR").innerHTML = window.devicePixelRatio;
-	document.getElementById("dbgWndDetailsInnerWidth").innerHTML = window.innerWidth;
-	document.getElementById("dbgWndDetailsInnerHeight").innerHTML = window.innerHeight;
+	document.getElementById("dbgWndDetailsDPR").innerHTML = window.devicePixelRatio.toFixed(2);
+	document.getElementById("dbgWndDetailsInnerWidth").innerHTML = window.innerWidth.toFixed(2);
+	document.getElementById("dbgWndDetailsInnerHeight").innerHTML = window.innerHeight.toFixed(2);
 }
 
 function populateVariableDetails() {
 	stylesToShow.forEach((elem) => {
 			let found =  document.getElementById(`dbgWndStyle${elem}`);
 			let elementStyle = getComputedStyle(found);
-			found.innerHTML = elementStyle.fontSize;
+			found.innerHTML = elementStyle.fontSize.toFixed(2);
 		}
 	);	
 }
@@ -400,7 +528,7 @@ function showInlineStyles() {
         	for(found of foundArray)
             {
                 let elementStyle = getComputedStyle(found);
-                found.innerHTML = elem + ' (' + elementStyle.fontSize + ')' + ': ' + found.innerHTML;
+                found.innerHTML = elem + ' (' + elementStyle.fontSize.toFixed(2) + ')' + ': ' + found.innerHTML;
             }
     	}
 	);
