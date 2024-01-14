@@ -461,7 +461,7 @@ function createSmallDebugPanel()
 				font-weight: bold;
 			}
 			
-			.dbgWndRuler {
+			.dbgWndRulerPx {
 				width: 100%;
 				height: 15px;
 				background-color: transparent;
@@ -469,14 +469,56 @@ function createSmallDebugPanel()
 				z-index: 10001;
 			}
 			
-			.dbgWndRulerUnit {
+			.dbgWndRulerPxUnit {
 				display: inline-block;
 				height: 15px;
 				border-right: 1px solid black;
 				background-color: transparent;
 				width: 100px;
-				padding: 0;
+				padding: 0px 2px;
 				margin: 0;
+				text-align: right;
+				font-size: 12px;
+			}
+
+			.dbgWndRulerRem {
+				width: 100%;
+				height: 15px;
+				background-color: transparent;
+				x-overflow: none;
+				z-index: 10001;
+			}
+			
+			.dbgWndRulerRemUnit {
+				display: inline-block;
+				height: 15px;
+				border-right: 1px solid black;
+				background-color: transparent;
+				width: 10rem;
+				padding: 0px 2px;
+				margin: 0;
+				text-align: right;
+				font-size: 12px;
+			}
+
+			.dbgWndRulerVw {
+				width: 100%;
+				height: 15px;
+				background-color: transparent;
+				x-overflow: none;
+				z-index: 10001;
+			}
+			
+			.dbgWndRulerVwUnit {
+				display: inline-block;
+				height: 15px;
+				border-right: 1px solid black;
+				background-color: transparent;
+				width: 1vw;
+				padding: 0px 2px;
+				margin: 0;
+				text-align: right;
+				font-size: 8px;
 			}
 		</style>
 		<!-- Fixed DIV -->
@@ -503,10 +545,24 @@ function createSmallDebugPanel()
 		txt += `
 		</div>`;
 		txt += `
-		<div id="dbgWndRuler">`;
+		<div id="dbgWndRulerPx">`;
 		for(cnt=1; cnt<Math.floor(window.innerWidth/100); cnt++)
+			txt += `
+			<span class="dbgWndRulerPxUnit">${cnt*100}</span>`;
 		txt += `
-			<span class="dbgWndRulerUnit"></span>`;
+		</div>`;
+		txt += `
+		<div id="dbgWndRulerRem">`;
+		for(cnt=1; cnt<20; cnt++)
+			txt += `
+			<span class="dbgWndRulerRemUnit">${cnt}</span>`;
+		txt += `
+		</div>`;
+		txt += `
+		<div id="dbgWndRulerVw">`;
+		for(cnt=1; cnt<20; cnt++)
+			txt += `
+			<span class="dbgWndRulerVwUnit">${cnt}</span>`;
 		txt += `
 		</div>`;
 	document.body.insertAdjacentHTML('afterbegin', txt);
